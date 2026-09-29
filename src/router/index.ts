@@ -1,21 +1,32 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import TabLayoutView from '@/views/TabLayoutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView,
+      path: '/onboarding',
+      name: 'onboarding',
+      component: () => import('@/views/onboarding/OnboardingView.vue'),
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/',
+      component: TabLayoutView,
+      children: [
+        { path: '', redirect: '/diary' },
+        {
+          path: 'diary',
+          name: 'diary',
+          component: () => import('@/views/diary/DiaryListView.vue'),
+        },
+        { path: 'match', name: 'match', component: () => import('@/views/match/MatchView.vue') },
+        { path: 'chat', name: 'chat', component: () => import('@/views/chat/LockerRoomView.vue') },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/profile/ProfileView.vue'),
+        },
+      ],
     },
   ],
 })
