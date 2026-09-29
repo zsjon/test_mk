@@ -1,0 +1,5 @@
+echo "husky 돌아가는중..."
+echo "변경사항이 반영되지 않았다면 git add 여부를 확인해주세요"
+
+npx lint-staged
+npm run type-check
