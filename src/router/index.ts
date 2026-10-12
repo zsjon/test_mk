@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import('@/views/onboarding/OnboardingView.vue'),
     },
     {
+      path: '/diary/write',
+      name: 'diary-write',
+      component: () => import('@/views/diary/DiaryWriteView.vue'),
+    },
+    {
       path: '/',
       component: TabLayoutView,
       children: [
